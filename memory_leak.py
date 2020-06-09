@@ -24,7 +24,7 @@ class MemoryMonitor:
 
         return memory_usage_GiB
 
-''' memory leak each one second. Be careful, it's savage '''
+''' memory leak. it consumes around 750 MB per second of the resident memory. be careful, it can be savage '''
 def memory_leak():
     l = [32.54e100] * 99999999
     while True:
