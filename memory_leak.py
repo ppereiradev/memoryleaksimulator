@@ -16,7 +16,8 @@ class MemoryMonitor:
                 memory_usage_GiB,
                 resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 2**10 / 2**30
             )
-            if memory_usage_GiB > 9.0:
+            # set the resident memory limit here
+            if memory_usage_GiB > 10.0:
                 os.kill(os.getpid(), 9)
             print(f"Memory usage GiB: {memory_usage_GiB}")
             sleep(0.1)
@@ -26,7 +27,7 @@ class MemoryMonitor:
 ''' memory leak each one second. Be careful, it's savage '''
 def memory_leak():
     l = [32.54e100] * 99999999
-    for i in range(0,12):
+    while True:
         aux = l.copy()
         l.append(aux)
         sleep(1)
